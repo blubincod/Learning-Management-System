@@ -137,13 +137,10 @@
                 <input type="checkbox" th:value="${x.id}"/>
             </td>
             <td th:text="${x.seq}">1</td>
+            <td th:text="${x.subject}"></td>
+            <td th:text="${x.subject}"></td>
             <td>
-                <p>
-                    <a th:href="'edit.do?id=' + ${x.id}" th:text="${x.subject}">강좌명</a>
-                </p>
-            </td>
-            <td>
-                <p th:text="${x.regDt}">2021.01.01</p>
+                <p th:text="${x.regDate}">2021.01.01</p>
             </td>
         </tr>
         </tbody>
