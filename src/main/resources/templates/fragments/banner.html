@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>메인 페이지</title>
-
+    <title>fastlms</title>
 </head>
 <body>
 
@@ -25,13 +24,8 @@
     });
 </script>
 
-<h1>메인 페이지 </h1>
-<div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
-
-<ul class="bxslider">
-    <li th:each="x, xStat : ${list}">
-        <img th:src="${x.urlFilename}"/>
-    </li>
+<ul class="bxslider" th:each="x : ${list}">
+    <li><img src="${x.url}"/></li>
 </ul>
 
 </body>

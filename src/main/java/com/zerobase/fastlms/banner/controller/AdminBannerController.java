@@ -30,6 +30,16 @@ public class AdminBannerController extends BaseController {
 
     private final BannerService bannerService;
 
+
+    @GetMapping("/")
+    public String getBanner(Model model, BannerParam parameter) {
+        List<BannerDto> bannerList = bannerService.list(parameter);
+
+        model.addAttribute("list", bannerList);
+
+        return "index";
+    }
+
     @GetMapping("/admin/banner/list.do")
     public String list(Model model, BannerParam parameter) {
 
