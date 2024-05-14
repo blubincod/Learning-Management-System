@@ -15,6 +15,13 @@ public interface BannerService {
      */
     boolean add(BannerInput parameter);
 
+    /***
+     * 배너 삭제
+     * @param parameter
+     * @return
+     */
+    boolean del(String parameter);
+
     /**
      * 배너 목록
      * @param parameter

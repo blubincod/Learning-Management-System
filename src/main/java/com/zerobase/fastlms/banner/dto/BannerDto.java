@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class BannerDto {
@@ -14,10 +15,16 @@ public class BannerDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    String subject;
-    String imagePath; //이미지
-    String imageInfo; //이미지 정보
-    LocalDate regDate;
+    String bannerName;
+
+    String filename;
+    String urlFilename;
+
+    long openValue; // 오픈 방법
+    long sortValue; // 정렬 순서
+    boolean publicYn; // 공개 비공개
+
+    LocalDateTime regDate;
 
     long totalCount;
     long seq;

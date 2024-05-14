@@ -57,6 +57,8 @@ public class AdminBannerController extends BaseController {
     @PostMapping("/admin/banner/add.do")
     public String addSubmit(Model model, BannerInput parameter, MultipartFile file) {
 
+        System.out.println("PARAM ---> " + parameter);
+
         boolean result = bannerService.add(parameter);
 
 //        if (file != null) {
@@ -74,15 +76,15 @@ public class AdminBannerController extends BaseController {
         return "redirect:/admin/banner/list.do";
     }
 
-//
-//    @PostMapping("/admin/category/delete.do")
-//    public String del(Model model, CategoryInput parameter) {
-//
-//        boolean result = categoryService.del(parameter.getId());
-//
-//        return "redirect:/admin/category/list.do";
-//    }
-//
+
+    @PostMapping("/admin/banner/delete.do")
+    public String del(Model model, BannerInput parameter) {
+
+        boolean result = bannerService.del(parameter.getIdList());
+
+        return "redirect:/admin/banner/list.do";
+    }
+
 //    @PostMapping("/admin/category/update.do")
 //    public String update(Model model, CategoryInput parameter) {
 //

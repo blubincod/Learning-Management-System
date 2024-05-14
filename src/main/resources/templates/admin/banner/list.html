@@ -61,7 +61,6 @@
 
                 var checked = $(this).is(':checked');
 
-
                 $('#dataLIst input[type=checkbox]').each(function (k, v) {
                     $(this).prop('checked', checked);
                 });
@@ -72,6 +71,7 @@
             $('#deleteButton').on('click', function () {
 
                 var $checked = $('#dataLIst input[type=checkbox]:checked');
+
                 if ($checked.length < 1) {
                     alert(' 삭제할 데이터를 선택해 주세요. ');
                     return false;
@@ -137,8 +137,15 @@
                 <input type="checkbox" th:value="${x.id}"/>
             </td>
             <td th:text="${x.seq}">1</td>
-            <td th:text="${x.subject}"></td>
-            <td th:text="${x.subject}"></td>
+            <td>
+                <p>
+                    <a th:href="'/edit.do?id=' + ${x.id}"
+                    th:text="${x.bannerName}">배너명</a>
+                </p>
+            </td>
+            <td>
+                <p th:text="${x.filename}"></p>
+            </td>
             <td>
                 <p th:text="${x.regDate}">2021.01.01</p>
             </td>

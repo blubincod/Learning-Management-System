@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,11 +22,28 @@ public class BannerServiceImpl implements BannerService {
     private final BannerRepository bannerRepository;
     private final BannerMapper bannerMapper;
 
+
+    private LocalDate getLocalDate(String value) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            return LocalDate.parse(value, formatter);
+        } catch (Exception e) {
+
+        }
+
+        return null;
+    }
+
     public boolean add(BannerInput parameter) {
 
         Banner banner = Banner.builder()
-                .subject(parameter.getSubject())
-                .regDate(LocalDate.now())
+                .bannerName(parameter.getBannerName())
+//                .filename(parameter.getFilename())
+                .urlFilename(parameter.getUrlFilename())
+                .openValue(parameter.getOpenValue())
+                .sortValue(parameter.getSortValue())
+                .publicYn(false)
+                .regDate(LocalDateTime.now())
                 .build();
         bannerRepository.save(banner);
 
@@ -46,5 +65,26 @@ public class BannerServiceImpl implements BannerService {
         }
 
         return list;
+    }
+
+    @Override
+    public boolean del(String idList) {
+
+        if (idList != null && idList.length() > 0) {
+            String[] ids = idList.split(",");
+            for (String x : ids) {
+                long id = 0L;
+                try {
+                    id = Long.parseLong(x);
+                } catch (Exception e) {
+                }
+
+                if (id > 0) {
+                    bannerRepository.deleteById(id);
+                }
+            }
+        }
+
+        return true;
     }
 }
