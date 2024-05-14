@@ -38,12 +38,13 @@ public class BannerServiceImpl implements BannerService {
 
         Banner banner = Banner.builder()
                 .bannerName(parameter.getBannerName())
-//                .filename(parameter.getFilename())
                 .urlFilename(parameter.getUrlFilename())
                 .openValue(parameter.getOpenValue())
                 .sortValue(parameter.getSortValue())
                 .publicYn(false)
                 .regDate(LocalDateTime.now())
+                .filename(parameter.getFilename())
+                .urlFilename(parameter.getUrlFilename())
                 .build();
         bannerRepository.save(banner);
 

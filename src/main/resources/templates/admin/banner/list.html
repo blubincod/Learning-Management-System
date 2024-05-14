@@ -40,6 +40,11 @@
             right: 0;
         }
 
+        .list img{
+            width: 220px;
+            height: 100px;
+        }
+
         .pager {
             margin-top: 20px;
             text-align: center;
@@ -48,6 +53,10 @@
         .pager a.on {
             font-weight: bold;
             color: red;
+        }
+
+        .banner-table .td{
+            height: 10px;
         }
     </style>
 
@@ -85,9 +94,6 @@
                 $.each($checked, function (k, v) {
                     idList.push($(this).val());
                 });
-
-                console.log(idList);
-                console.log(idList.join(','));
 
                 var $deleteForm = $('form[name=deleteForm]');
                 $deleteForm.find('input[name=idList]').val(idList.join(','));
@@ -144,7 +150,7 @@
                 </p>
             </td>
             <td>
-                <p th:text="${x.filename}"></p>
+                <img th:src="${x.urlFilename}">
             </td>
             <td>
                 <p th:text="${x.regDate}">2021.01.01</p>
