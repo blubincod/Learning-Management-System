@@ -60,7 +60,8 @@
                     배너명
                 </th>
                 <td>
-                    <input type="text" name="bannerName" required
+                    <input th:value="${detail.bannerName}" type="text"
+                           name="bannerName" required
                            placeholder="배너명 입력"/>
                 </td>
             </tr>
@@ -68,7 +69,8 @@
             <tr>
                 <th>배너 파일</th>
                 <td>
-                    <input type="file" name="file"/>
+                    <input th:value="${detail.filename}" type="file"
+                           name="file"/>
                 </td>
             </tr>
 
@@ -84,11 +86,12 @@
             <tr>
                 <th>오픈 방법</th>
                 <td>
-                    <select name="openValue" required>
+                    <select name="openValue"
+                            required>
                         <option value=""> 오픈 방법 선택</option>
-                        <option> 1</option>
-                        <option> 2</option>
-                        <option> 3</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
                     </select>
                 </td>
             </tr>
@@ -98,7 +101,8 @@
                     정렬 순서
                 </th>
                 <td>
-                    <input type="text" name="sortValue" required
+                    <input th:value="${detail.sortValue}" type="text"
+                           name="sortValue" required
                            placeholder="정렬 순서 입력"/>
                 </td>
             </tr>
@@ -108,7 +112,8 @@
                     공개 여부
                 </th>
                 <td>
-                    <input type="checkbox" name="publicYn"/>공개
+                    <input th:field="*{detail.publicYn}" type="checkbox"
+                           name="publicYn"/>공개
                 </td>
             </tr>
             </tbody>

@@ -43,9 +43,8 @@ public class BannerServiceImpl implements BannerService {
                 .openValue(parameter.getOpenValue())
                 .sortValue(parameter.getSortValue())
                 .publicYn(parameter.isPublicYn())
-                .regDate(LocalDateTime.now())
                 .filename(parameter.getFilename())
-                .urlFilename(parameter.getUrlFilename())
+                .regDate(LocalDateTime.now())
                 .build();
         bannerRepository.save(banner);
 
@@ -95,14 +94,19 @@ public class BannerServiceImpl implements BannerService {
 
         Optional<Banner> optionalBanner = bannerRepository.findById(parameter.getId());
 
-        if(!optionalBanner.isPresent()){
+        if (!optionalBanner.isPresent()) {
             return false;
         }
 
         Banner banner = optionalBanner.get();
 
         banner.setBannerName(parameter.getBannerName());
+        banner.setFilename(parameter.getFilename());
+        banner.setOpenValue(parameter.getOpenValue());
+        banner.setSortValue(parameter.getSortValue());
+        banner.setPublicYn(parameter.isPublicYn());
         banner.setUptDate(LocalDateTime.now());
+
         bannerRepository.save(banner);
 
         return true;

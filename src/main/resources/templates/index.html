@@ -30,6 +30,7 @@
 
 <ul class="bxslider">
     <li th:each="x, xStat : ${list}">
+        <!--    th:if="${x.publicYn}"-->
         <img th:src="${x.urlFilename}"/>
     </li>
 </ul>
