@@ -41,7 +41,7 @@ public class BannerServiceImpl implements BannerService {
                 .urlFilename(parameter.getUrlFilename())
                 .openValue(parameter.getOpenValue())
                 .sortValue(parameter.getSortValue())
-                .publicYn(false)
+                .publicYn(parameter.isPublicYn())
                 .regDate(LocalDateTime.now())
                 .filename(parameter.getFilename())
                 .urlFilename(parameter.getUrlFilename())

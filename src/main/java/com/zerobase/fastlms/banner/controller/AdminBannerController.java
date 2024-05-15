@@ -1,6 +1,5 @@
 package com.zerobase.fastlms.banner.controller;
 
-
 import com.zerobase.fastlms.banner.dto.BannerDto;
 import com.zerobase.fastlms.banner.model.BannerInput;
 import com.zerobase.fastlms.banner.model.BannerParam;
@@ -20,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,8 +34,15 @@ public class AdminBannerController extends BaseController {
     @GetMapping("/")
     public String getBanner(Model model, BannerParam parameter) {
         List<BannerDto> bannerList = bannerService.list(parameter);
+        List<BannerDto> publicBannerList = new ArrayList<>();
 
-        model.addAttribute("list", bannerList);
+        for(BannerDto item : bannerList){
+            if(item.isPublicYn()){
+            publicBannerList.add(item);
+            }
+        }
+
+        model.addAttribute("list", publicBannerList);
 
         return "index";
     }
