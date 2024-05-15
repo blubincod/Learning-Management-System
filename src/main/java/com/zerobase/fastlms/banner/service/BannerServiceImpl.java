@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -87,5 +88,28 @@ public class BannerServiceImpl implements BannerService {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean set(BannerInput parameter) {
+
+        Optional<Banner> optionalBanner = bannerRepository.findById(parameter.getId());
+
+        if(!optionalBanner.isPresent()){
+            return false;
+        }
+
+        Banner banner = optionalBanner.get();
+
+        banner.setBannerName(parameter.getBannerName());
+        banner.setUptDate(LocalDateTime.now());
+        bannerRepository.save(banner);
+
+        return true;
+    }
+
+    @Override
+    public BannerDto getById(long id) {
+        return bannerRepository.findById(id).map(BannerDto::of).orElse(null);
     }
 }

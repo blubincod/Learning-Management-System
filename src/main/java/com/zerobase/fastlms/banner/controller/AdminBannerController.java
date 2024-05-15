@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,9 +37,9 @@ public class AdminBannerController extends BaseController {
         List<BannerDto> bannerList = bannerService.list(parameter);
         List<BannerDto> publicBannerList = new ArrayList<>();
 
-        for(BannerDto item : bannerList){
-            if(item.isPublicYn()){
-            publicBannerList.add(item);
+        for (BannerDto item : bannerList) {
+            if (item.isPublicYn()) {
+                publicBannerList.add(item);
             }
         }
 
@@ -71,8 +72,26 @@ public class AdminBannerController extends BaseController {
         return "admin/banner/list";
     }
 
-    @GetMapping("/admin/banner/add.do")
-    public String add(Model model) {
+    @GetMapping(value = {"/admin/banner/add.do", "/admin/banner/edit.do"})
+    public String add(Model model, HttpServletRequest request, BannerInput parameter) {
+
+        boolean editMode = request.getRequestURI().contains("/edit.do");
+        BannerDto detail = new BannerDto();
+
+        if (editMode) {
+            long id = parameter.getId();
+            BannerDto existBanner = bannerService.getById(id);
+            System.out.println("ExistBanner -> " + existBanner);
+            if (existBanner == null) {
+                // error 처리
+                model.addAttribute("message", "배너정보가 존재하지 않습니다.");
+                return "common/error";
+            }
+            detail = existBanner;
+        }
+
+        model.addAttribute("editMode", editMode);
+        model.addAttribute("detail", detail);
 
         return "admin/banner/add";
     }
@@ -114,8 +133,8 @@ public class AdminBannerController extends BaseController {
         return new String[]{newFilename, newUrlFilename};
     }
 
-    @PostMapping("/admin/banner/add.do")
-    public String addSubmit(Model model, BannerInput parameter, MultipartFile file) {
+    @PostMapping(value = {"/admin/banner/add.do", "/admin/banner/edit.do"})
+    public String addSubmit(Model model, HttpServletRequest request, BannerInput parameter, MultipartFile file) {
 
         String saveFilename = "";
         String urlFilename = "";
@@ -143,7 +162,22 @@ public class AdminBannerController extends BaseController {
         parameter.setFilename(saveFilename);
         parameter.setUrlFilename(urlFilename);
 
-        boolean result = bannerService.add(parameter);
+        boolean editMode = request.getRequestURI().contains("/edit.do");
+
+        if (editMode) {
+            long id = parameter.getId();
+            BannerDto existBanner = bannerService.getById(id);
+            if (existBanner == null) {
+                // error 처리
+                model.addAttribute("message", "배너정보가 존재하지 않습니다.");
+                return "common/error";
+            }
+
+            boolean result = bannerService.set(parameter);
+
+        } else {
+            boolean result = bannerService.add(parameter);
+        }
 
         return "redirect:/admin/banner/list.do";
     }

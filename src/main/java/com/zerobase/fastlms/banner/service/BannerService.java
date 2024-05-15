@@ -15,6 +15,13 @@ public interface BannerService {
      */
     boolean add(BannerInput parameter);
 
+    /**
+     * 배너 목록
+     * @param parameter
+     * @return
+     */
+    List<BannerDto> list(BannerParam parameter);
+
     /***
      * 배너 삭제
      * @param parameter
@@ -22,10 +29,12 @@ public interface BannerService {
      */
     boolean del(String parameter);
 
-    /**
-     * 배너 목록
+    /***
+     * 배너 삭제
      * @param parameter
      * @return
      */
-    List<BannerDto> list(BannerParam parameter);
+    boolean set(BannerInput parameter);
+
+    BannerDto getById(long id);
 }

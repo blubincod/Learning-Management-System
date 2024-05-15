@@ -8,14 +8,16 @@
             width: 100%;
             border-collapse: collapse;
         }
+
         .detail table th, .detail table td {
-            border:solid 1px #000;
+            border: solid 1px #000;
         }
 
         .buttons {
             margin-top: 20px;
             text-align: center;
         }
+
         .buttons a, .buttons button {
             border-width: 0;
             background-color: transparent;
@@ -28,11 +30,13 @@
         }
     </style>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
-            $('#submitForm').on('submit', function() {
+            $('#submitForm').on('submit', function () {
 
                 // 에디터의 내용이 textarea에 적용된다.
                 oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -56,14 +60,15 @@
                     배너명
                 </th>
                 <td>
-                    <input type="text" name="bannerName" required placeholder="배너명 입력" />
+                    <input type="text" name="bannerName" required
+                           placeholder="배너명 입력"/>
                 </td>
             </tr>
 
             <tr>
                 <th>배너 파일</th>
                 <td>
-                    <input type="file" name="file" />
+                    <input type="file" name="file"/>
                 </td>
             </tr>
 
@@ -80,10 +85,10 @@
                 <th>오픈 방법</th>
                 <td>
                     <select name="openValue" required>
-                        <option value=""> 오픈 방법 선택 </option>
-                        <option> 1 </option>
-                        <option> 2 </option>
-                        <option> 3 </option>
+                        <option value=""> 오픈 방법 선택</option>
+                        <option> 1</option>
+                        <option> 2</option>
+                        <option> 3</option>
                     </select>
                 </td>
             </tr>
@@ -93,7 +98,8 @@
                     정렬 순서
                 </th>
                 <td>
-                    <input type="text" name="sortValue" required placeholder="정렬 순서 입력" />
+                    <input type="text" name="sortValue" required
+                           placeholder="정렬 순서 입력"/>
                 </td>
             </tr>
 
@@ -102,14 +108,14 @@
                     공개 여부
                 </th>
                 <td>
-                    <input type="checkbox" name="publicYn" />공개
+                    <input type="checkbox" name="publicYn"/>공개
                 </td>
             </tr>
             </tbody>
         </table>
 
         <div class="buttons">
-            <button type="submit"> 배너 등록 하기 </button>
+            <button type="submit"> 배너 등록 하기</button>
             <a href="/admin/banner/list.do"> 목록 이동 </a>
         </div>
 
@@ -117,12 +123,13 @@
 </div>
 
 
-<script type="text/javascript" src="/res/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/res/se2/js/service/HuskyEZCreator.js"
+        charset="utf-8"></script>
 <script type="text/javascript">
 
     var oEditors = [];
 
-    setTimeout(function() {
+    setTimeout(function () {
 
         nhn.husky.EZCreator.createInIFrame({
             oAppRef: oEditors,

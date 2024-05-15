@@ -31,5 +31,6 @@ public class Banner {
     boolean publicYn; // 공개 비공개
 
     LocalDateTime regDate;
+    LocalDateTime uptDate;
 
 }
