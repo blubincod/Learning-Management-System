@@ -39,6 +39,7 @@ public class BannerServiceImpl implements BannerService {
 
         Banner banner = Banner.builder()
                 .bannerName(parameter.getBannerName())
+                .linkAddr(parameter.getLinkAddr())
                 .urlFilename(parameter.getUrlFilename())
                 .openValue(parameter.getOpenValue())
                 .sortValue(parameter.getSortValue())
@@ -101,6 +102,7 @@ public class BannerServiceImpl implements BannerService {
         Banner banner = optionalBanner.get();
 
         banner.setBannerName(parameter.getBannerName());
+        banner.setLinkAddr(parameter.getLinkAddr());
         banner.setFilename(parameter.getFilename());
         banner.setOpenValue(parameter.getOpenValue());
         banner.setSortValue(parameter.getSortValue());

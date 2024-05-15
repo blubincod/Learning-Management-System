@@ -8,6 +8,7 @@ public class BannerInput {
     long id;
 
     String bannerName;
+    String linkAddr;
 
     String filename;
     String urlFilename;

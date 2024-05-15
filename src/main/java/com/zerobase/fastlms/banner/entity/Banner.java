@@ -22,6 +22,7 @@ public class Banner {
     private Long id;
 
     String bannerName;
+    String linkAddr;
 
     String filename;
     String urlFilename;

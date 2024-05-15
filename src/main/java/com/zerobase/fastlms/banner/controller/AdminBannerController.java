@@ -191,12 +191,4 @@ public class AdminBannerController extends BaseController {
         return "redirect:/admin/banner/list.do";
     }
 
-//    @PostMapping("/admin/category/update.do")
-//    public String update(Model model, CategoryInput parameter) {
-//
-//        boolean result = categoryService.update(parameter);
-//
-//        return "redirect:/admin/category/list.do";
-//    }
-
 }

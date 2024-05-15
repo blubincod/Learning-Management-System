@@ -22,6 +22,7 @@ public class BannerDto {
     private Long id;
 
     String bannerName;
+    String linkAddr;
 
     String filename;
     String urlFilename;
@@ -40,6 +41,7 @@ public class BannerDto {
         return BannerDto.builder()
                 .id(banner.getId())
                 .bannerName(banner.getBannerName())
+                .linkAddr(banner.getLinkAddr())
                 .openValue(banner.getOpenValue())
                 .sortValue(banner.getSortValue())
                 .publicYn(banner.isPublicYn())
